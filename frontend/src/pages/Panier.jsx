@@ -13,7 +13,7 @@ function panier() {
   CallApi.get("/api/cart")
     .then((res) => {console.log(res.data)
       const filteredData = res.data.filter(item => item.user_id === parseInt(userId,10));
-      setCart(filteredData);
+      setCart(filteredData[filteredData.length-1]);
       // console.log(res.data)
        console.log(userId)
     })
@@ -43,7 +43,7 @@ console.log(cartproductlist)
           (product) =><div key="product.id">
             {product.title}
             {product.price}
-            {product.photo}
+             <img src ={`/images/${product.photo}`} />        
              </div>)}
     </div>
   )
