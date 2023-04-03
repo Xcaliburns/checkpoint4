@@ -32,14 +32,19 @@ function panier() {
 }, []);
 
 
-console.log(cart)
+console.log(cartproductlist)
 
  
   //-----il me faut product cart qui ont le meme id que les cart du user 
   //je veux recuperer les articles du panier (product_cart)
   return (
     <div>
-        { cartproductlist.map((product) =><div>{product.title}{product.price} </div>)}
+        { cartproductlist.map(
+          (product) =><div key="product.id">
+            {product.title}
+            {product.price}
+            {product.photo}
+             </div>)}
     </div>
   )
 }
