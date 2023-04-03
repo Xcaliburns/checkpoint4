@@ -13,7 +13,7 @@ function panier() {
   CallApi.get("/api/cart")
     .then((res) => {console.log(res.data)
       const filteredData = res.data.filter(item => item.user_id === parseInt(userId,10));
-      setCart(filteredData);
+      setCart(filteredData[filteredData.length-1]);
       // console.log(res.data)
        console.log(userId)
     })
@@ -32,14 +32,19 @@ function panier() {
 }, []);
 
 
-console.log(cart)
+console.log(cartproductlist)
 
  
   //-----il me faut product cart qui ont le meme id que les cart du user 
   //je veux recuperer les articles du panier (product_cart)
   return (
     <div>
-        { cartproductlist.map((product) =><div>{product.title}{product.price} </div>)}
+        { cartproductlist.map(
+          (product) =><div key="product.id">
+            {product.title}
+            {product.price}
+             <img src ={`/images/${product.photo}`} />        
+             </div>)}
     </div>
   )
 }
