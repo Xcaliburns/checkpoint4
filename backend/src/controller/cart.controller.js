@@ -1,4 +1,4 @@
-const {findOne,  addOne } = require("../model/cart.model.js");
+const {findOne,findAll,  addOne } = require("../model/cart.model.js");
 
 
 const getOne = async(req,res,next) =>{
@@ -14,6 +14,16 @@ const getOne = async(req,res,next) =>{
         next(e);
     }
 };
+const getAll = async(req,res, next)=>{
+    try{ 
+        const movies = await findAll();
+        
+        res.send(movies);
+    } catch(e){
+        next(e);
+    }
+
+};
 
 const createOne = async (req, res, next) => {
     try {
@@ -26,4 +36,4 @@ const createOne = async (req, res, next) => {
   };
 
 
-  module.exports ={ getOne,createOne};
+  module.exports ={ getOne,createOne,getAll};

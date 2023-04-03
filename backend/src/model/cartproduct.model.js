@@ -2,16 +2,19 @@ const db =require("./db.js");
 
 
 
-const findAll= async ()=> {
-    try{
-        const [cartproducts] = await db.query("select * from `cart_product`");
+const findAll = async () => {
+  try {
+    const [cartProducts] = await db.query(`
+      SELECT *
+      FROM cart_product
+      INNER JOIN product ON cart_product.product_id = product.id
+    `);
 
-        return cartproducts;
-    }catch(e){
-        console.log(e);
-    }
+    return cartProducts;
+  } catch (e) {
+    console.log(e);
+  }
 };
-
 const addOne = async (cartProduct) => {
   try {
     const { cartId, productId, quantity } = cartProduct;

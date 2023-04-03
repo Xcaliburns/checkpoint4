@@ -27,9 +27,9 @@ const login = async (req, res, next) => {
 
     const token = encodeJWT(user);
 
-    // res.cookie("auth_token", token, { httpOnly: true, secure: false });
+  
 
-    res.cookie("auth_token",token,{ httpOnly: true, secure: false }); // nom du cookie, donnée, param.. ( en prod passer secure a True )
+    res.cookie("auth_token",token,{ httpOnly: true, secure: false }); 
     res.status(200).json({userId:user.id ,name:user.name,email:user.email,})
   } catch (e) {
     res.sendStatus(500);
