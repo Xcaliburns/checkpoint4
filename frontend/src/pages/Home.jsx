@@ -1,14 +1,14 @@
 import React from 'react'
 import { useEffect ,useState} from 'react';
 import { useUserContext } from "../context/UserContext";
-import callApi from " ../Services/CallApi";
+import CallApi from "../Services/CallApi"
 import ProductCard from '../Components/productCard';
 function home() {
 
   const [product,setProduct]=useState([]);
   const { userName,user,userEmail,userId } = useUserContext();
   useEffect(() => {
-  callApi.get("/api/product")
+  CallApi.get("/api/product")
     .then((res) => setProduct(res.data))
     .catch((err)=>console.error(err));
 }, []);

@@ -11,6 +11,16 @@ const findOne= async (id)=> {
     }
 };
 
+const findAll= async ()=> {
+    try{
+        const [carts] = await db.query("select * from `cart`");
+
+        return carts;
+    }catch(e){
+        console.log(e);
+    }
+};
+
 const addOne = async (cart) => {
 
     try{
@@ -25,4 +35,4 @@ const addOne = async (cart) => {
     }
 }
 
-module.exports ={findOne, addOne};
+module.exports ={findOne, addOne,findAll};
