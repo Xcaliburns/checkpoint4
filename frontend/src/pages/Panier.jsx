@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState,useEffect} from "react";
 import { useUserContext } from "../context/UserContext";
+import Navbar from "../Components/Navbar"
 import CallApi from "../Services/CallApi"
 
 function panier() {
@@ -38,6 +39,7 @@ console.log(cartproductlist)
   //-----il me faut product cart qui ont le meme id que les cart du user 
   //je veux recuperer les articles du panier (product_cart)
   return (
+    <div className='h-full bg-slate-500'><NavBar/>
     <div>
         { cartproductlist.map(
           (product) =><div key="product.id">
@@ -45,7 +47,7 @@ console.log(cartproductlist)
             {product.price}
              <img src ={`/images/${product.photo}`} />        
              </div>)}
-    </div>
+    </div></div>
   )
 }
 

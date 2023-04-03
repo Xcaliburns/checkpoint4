@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Navbar from "../Components/Navbar"
 import callApi from "../Services/CallApi";
 import { useUserContext } from "../context/UserContext";
 
@@ -38,39 +38,42 @@ function Login() {
 
 
   return (
+    <div className="h-full">
+    <div className="flex flex-col h-full  bg-slate-500"><Navbar/>
     <form
+   
       onSubmit={handleSubmit}
-      style={{ width: "18rem" }}
-      className="m-auto mt-5"
+      
+      className="flex flex-col text-xl ml-5 text-left items-between mt-12"
     >
-      <div className="mb-3">
-        <label htmlFor="email" className="form-label">
+      <div className="flex flex-row my-10">
+        <label htmlFor="email" className="w-1/2">
           Email
         </label>
         <input
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           name="email"
-          className="form-control"
+          className="rounded mr-10"
           id="email"
         />
       </div>
-      <div className="mb-3">
-        <label htmlFor="password" className="form-label">
+      <div className="flex flex-row my-10">
+        <label htmlFor="password" className="w-1/2">
           Password
         </label>
         <input
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           name="password"
-          className="form-control"
+          className="rounded mr-10"
           id="password"
         />
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="bg-blue-500 flex ml-36 mt-10 rounded w-36 justify-center )">
         Connexion
       </button>
-    </form>
+    </form></div></div>
   );
 }
 

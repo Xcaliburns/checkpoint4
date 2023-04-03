@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Navbar from "../Components/Navbar"
 import callAPI from "../Services/callAPI";
 
 function SignUp() {
@@ -24,6 +24,9 @@ function SignUp() {
   };
 
   return (
+
+    <div className="h-full bg-slate-500">
+      <Navbar/>
     <form
       onSubmit={handleForm}
       style={{ width: "18rem" }}
@@ -65,7 +68,7 @@ function SignUp() {
       <button type="submit" className="btn btn-primary">
         Inscription
       </button>
-    </form>
+    </form></div>
   );
 }
 
