@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react";
 
-function ProductCard({description,price,photo,title}) {
+function ProductCard({ description, price, photo, title }) {
   return (
-    <div className='flex flex-row items-center border-2  border-black-200 bg-gray-100 rounded-md   mt-3 mx-10'>  
-    <img className='h-24 max-w-48 rounded-md  'src ={`/images/${photo}`} /> 
-   <div className='flex flex-col ml-10 w-1/2 text-center items-right '> <div className="  text-xl pl-5">{title}</div>     
-    <div className="bg-red mt-10 pl-5 text-2xl">{price}  €</div></div>
-    <div className="bg-red mt-10">{description}</div>
-        
-    </div>
-  )
+    <div className="flex flex-row h-24 w-80 items-center border-4 border-cyan-500 bg-cyan-50 rounded-md shadow-lg shadow-cyan-500/100  mt-3 mx-10">
+      <img className="h-24 max-w-48 rounded-md   " src={`${photo}`} />     
+      <div className="flex flex-col items-center w-max-150 w-min-150   text-wrap  ">
+        <div className="  w-48 h-12 text-center">{title}</div>
+        <div className=" pb-2  text-2xl">{price} €</div>
+      </div>
+     </div>
+  );
 }
 
-export default ProductCard
+export default ProductCard;

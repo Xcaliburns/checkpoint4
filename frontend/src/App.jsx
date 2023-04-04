@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Panier from "./pages/Panier";
 import SignUp from "./pages/SignUp";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/panier" element={<Panier />} />
+          <Route path="/panier" element={<Panier />} />          
+          <Route path="/admin" element={<Admin />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       </CurrentUserContextProvider>
