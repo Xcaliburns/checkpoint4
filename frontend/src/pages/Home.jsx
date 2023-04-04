@@ -23,10 +23,10 @@ function home() {
   //     })
   //   })
   return (
-    <div className="flex flex-col bg-gray-600 h-full ">
+    <div className="flex flex-col bg-gray-600 h-full bg-cover ">
       <Navbar />
-      <div className="text-3xl mt-24 text-center mb-12">
-        Willkommen {userName}
+      <div className="text-3xl text-slate-100 mt-24 text-center mb-12 h-grow">
+        Hello {userName}
       </div>
       <div className="flex flex-wrap rounded  ">
         {Array.isArray(product) && product.length > 0 ? (

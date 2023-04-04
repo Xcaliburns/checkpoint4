@@ -44,13 +44,13 @@ function panier() {
   //je veux recuperer les articles du panier (product_cart)
   return (
     <div className="h-full bg-slate-500">
-      <NavBar />
+      <Navbar />
       <div>
         {cartproductlist.map((product) => (
           <div key="product.id">
             {product.title}
             {product.price}
-            <img src={`/images/${product.photo}`} />
+            <img src={`${product.photo}`} />
           </div>
         ))}
       </div>

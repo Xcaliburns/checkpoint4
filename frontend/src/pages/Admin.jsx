@@ -71,12 +71,12 @@ function Admin() {
     <div className="flex flex-col items-center bg-gray-500 h-full">
       {" "}
       <Navbar />
-      <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
+      <div className="w-full px-6 py-4 mt-10 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
         <form className="bg-gray-800 " onSubmit={handleSubmit}>
-          <div className="bg">
+          <div className="mt-10 min-h-full">
             <label
               htmlFor="text"
-              className="block text-sm font-medium text-gray-400 undefined"
+              className="block text-sm font-medium text-gray-400 "
             >
               description
             </label>
@@ -146,14 +146,14 @@ function Admin() {
           </div>
           <button
             type="button"
-            className=" block w-2/3 rounded-md"
+            className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
             onClick={handleSubmit}
           >
             Creer
           </button>
         </form>
       </div>
-      <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
+      <div className="px-6 py-4 mt-10 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg min-w-full min-h-800">
         <form className="bg-gray-800 " onSubmit={handleUpdate}>
           <div className="bg">
             <label
