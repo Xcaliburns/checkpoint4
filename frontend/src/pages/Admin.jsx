@@ -10,7 +10,7 @@ function Admin() {
   const [title, setTitle] = useState("");
   const [productData, setProductData] = useState([]);
   const [productId, setProductId] = useState("");
-
+  const [deleteId,setDeleteId]=useState("");  
   const handleSubmit = (e) => {
     e.preventDefault();
     setProductId(product.id);
@@ -49,10 +49,22 @@ function Admin() {
     }
   };
 
-   
-  const handleProductChange=(e)=> {
+  const handleDelete=(e)=>{e.preventDefault();
+  if (deleteId)
+      CallApi.delete(`/api/product/${deleteId}`)
+    .catch((err) => console.log(err.response.data));
+    else {
+      alert("Please specify a description, a price  a password and a title");
+    }
+  };
+
+  const handleProductChange = (e) => {
     setProductId(e.target.value);
-  }
+  };
+
+  const handleDeleteId = (e) => {
+    setDeleteId(e.target.value);
+  };
   console.log(price);
   console.log(productId);
   return (
@@ -195,7 +207,7 @@ function Admin() {
             </div>
           </div>
 
-           <div className="mt-4">
+          <div className="mt-4">
             <label
               htmlFor="text"
               className="block text-sm font-medium text-gray-400 "
@@ -221,19 +233,17 @@ function Admin() {
               titre
             </label>
             <select
-             value={productId}
-             onChange={handleProductChange}
+              value={productId}
+              onChange={handleProductChange}
               className="pl-2 text-black h-10 rounded-lg bg-gray-200 shadow-lg shadow-blue-500/50 "
             >
               {productData.map((product) => (
                 <option
                   className="text-black"
                   value={product.id}
-                  key={product.id}  
-                             
+                  key={product.id}
                 >
-                  {product.title}            
-                  
+                  {product.title}
                 </option>
               ))}
             </select>
@@ -245,6 +255,40 @@ function Admin() {
             className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
           >
             Update
+          </button>
+        </form>
+      </div>
+      <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
+        <form className="bg-gray-800 " onSubmit={handleUpdate}>
+          <div className="mt-4">
+            <label
+              htmlFor="titre"
+              className="block text-sm font-medium text-gray-400 "
+            >
+              article à retirer
+            </label>
+            <select
+              value={deleteId}
+              onChange={handleDeleteId}
+              className="pl-2 text-black h-10 rounded-lg bg-gray-200 shadow-lg shadow-blue-500/50 "
+            >
+              {productData.map((product) => (
+                <option
+                  className="text-black"
+                  value={product.id}
+                  key={product.id}
+                >
+                  {product.title}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button
+            type="submit"
+            onClick={handleDelete}
+            className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+          >
+            Effacer
           </button>
         </form>
       </div>

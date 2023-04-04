@@ -1,4 +1,4 @@
-const { findAll, findOne, addOne ,updateOne} = require("../model/product.model.js");
+const { findAll, findOne, addOne ,updateOne,deleteOne} = require("../model/product.model.js");
 
 const getAll = async(req,res, next)=>{
     try{ 
@@ -55,10 +55,27 @@ const editOne = async (req, res) => {
   }
 };
 
+const eraseOne = async (req, res) => {
+  try {
+    const productId = parseInt(req.params.id, 10);
+
+    const result = await deleteOne(productId);
+
+    if (result.affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+};
 
 
 
 
 
 
-module.exports ={getAll, getOne,createOne,editOne};
+
+module.exports ={getAll, getOne,createOne,editOne,eraseOne};
