@@ -23,12 +23,12 @@ function home() {
   //     })
   //   })
   return (
-    <div className="flex flex-col bg-gray-600 h-full bg-cover ">
+    <div className="flex flex-col items-center bg-gray-600 min-h-full bg-cover ">
       <Navbar />
-      <div className="text-3xl text-slate-100 mt-24 text-center mb-12 h-grow">
+      <div className="text-3xl text-slate-100 mt-24  mb-12 h-grow">
         Hello {userName}
       </div>
-      <div className="flex flex-wrap rounded  ">
+      <div className="flex flex-wrap rounded border-x-2 ">
         {Array.isArray(product) && product.length > 0 ? (
           product.map((product) => (
             <ProductCard

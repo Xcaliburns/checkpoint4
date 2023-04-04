@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import callApi from "../Services/CallApi";
 import { useUserContext } from "../context/UserContext";
-
+import { toast } from "react-toastify";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,8 +36,8 @@ function Login() {
   };
 
   return (
-    <div className="h-full ">
-      <div className="flex flex-col h-full items-center  bg-slate-500">
+  
+      <div className="flex flex-col min-h-full items-center  bg-slate-500">
         <Navbar />
         <form
           onSubmit={handleSubmit}
@@ -69,13 +69,13 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="inline-flex items-center px-4 py-2 mt-4 ml-1 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+            className="inline-flex items-center px-4 py-2 mt-4 ml-1 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false hover:bg-green-500"
           >
             Connexion
           </button>
         </form>
       </div>
-    </div>
+   
   );
 }
 
