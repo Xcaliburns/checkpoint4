@@ -46,8 +46,18 @@ const updateOne = async function (product) {
     }
   };
 
+const deleteOne = async function (productId) {
+  try {
+    const result = await db.query(
+      `DELETE FROM \`product\` WHERE id = ?`,
+      [productId]
+    );
+    return result;
+  } catch (error) {
+    throw new Error(`Impossible de supprimer le produit : ${error}`);
+  }
+};
 
 
 
-
-module.exports = { findAll, findOne, addOne,updateOne };
+module.exports = { findAll, findOne, addOne,updateOne,deleteOne };
