@@ -1,100 +1,60 @@
 import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { useUserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 export default function NavBar() {
-  const [navbar, setNavbar] = useState(false);
+ const { userEmail,setUserEmail,setUserName,setUserId } = useUserContext();
+  const navigate = useNavigate();
+
+const logout=(e)=>{
+  e.preventDefault();
+  localStorage.removeItem('userName');
+  localStorage.removeItem('userEmail');
+  localStorage.removeItem('userId');
+  setUserEmail("");
+  setUserName("");
+  setUserId("");
+  alert("vous avez été deconnecté");
+  navigate('/login');
+}
 
   return (
-    <nav className="w-full bg-dark shadow">
-      <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+    <nav className="w-full  bg-dark shadow h-24 min-h-full ">
+      <div className="justify-between  px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="javascript:void(0)">
-              <h2 className="text-2xl font-bold text-white">indie World</h2>
-            </a>
-            <div className="md:hidden">
-              <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
-                onClick={() => setNavbar(!navbar)}
-              >
-                {navbar ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-white"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                )}
-              </button>
-            </div>
+            <h2 className="text-2xl font-bold text-white">indie World</h2>
           </div>
         </div>
         <div>
-          <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
-            }`}
-          >
-            <nav className=" justify-evenly space-y-8 md:flex md:space-x-6 md:space-y-0">
-              <div className="text-white hover:text-indigo-200 ">
-                <NavLink to="/">Home</NavLink>
+          <nav className=" flex flex-col align-center  space-y-8 md:flex md:space-x-6 md:space-y-0 text-xl text-gray-100">
+            <div className="flex flex-row ">
+              
+              <div className=" pl-2 hover:border-2 hover:rounded-md hover:text-green-300  hover:shadow-green-500/300 hover:border-green-500">
+                <NavLink to="/">Accueil</NavLink>
               </div>
-              <div className="text-white hover:text-indigo-200 ">
-                <NavLink to="/picturelist">Photos</NavLink>
+              <div className="pl-2 hover:border-2 hover:rounded-md hover:text-green-300  hover:shadow-green-500/300 hover:border-green-500">
+                <NavLink to="/login">Login</NavLink>
               </div>
-              <div className="text-white hover:text-indigo-200 ">
-                <NavLink to="/pricing">Pricing</NavLink>
-              </div>
-              <div className="text-white hover:text-indigo-200">
-                <NavLink to="/">Home</NavLink>
-              </div>
-            </nav>
-
-            <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              <div className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
-                <NavLink to="/login">Sign in</NavLink>
-              </div>
-              <div className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
-                <NavLink to="/signup">Sign up</NavLink>
+              <div className=" pl-2 hover:border-2 hover:rounded-md hover:text-green-300  hover:shadow-green-500/300 hover:border-green-500 ">
+                <NavLink to="/signup">Inscription</NavLink>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="hidden space-x-2 md:inline-block">
-          <a
-            href="javascript:void(0)"
-            className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-          >
-            Sign in
-          </a>
-          <a
-            href="javascript:void(0)"
-            className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-          >
-            Sign up
-          </a>
+            <div className="flex flex-row">
+              <div className="pl-2  hover:border-2 hover:rounded-md hover:text-green-300  hover:shadow-green-500/300 hover:border-green-500 ">
+                <NavLink to="/panier">Panier</NavLink>
+              </div>
+              <div className=" pl-2 hover:border-2 hover:rounded-md hover:text-green-300  hover:shadow-green-500/300 hover:border-green-500 ">
+                {userEmail === "david.abruzzo@sfr.fr" && (
+                  <NavLink to="/admin">Admin</NavLink>
+                )}
+              </div>
+               <div className="pl-2  hover:border-2 hover:rounded-md hover:text-red-900  hover:shadow-red-500/300 hover:border-red-900">
+                <button className="" type="button" onClick={logout}>Logout</button>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
     </nav>

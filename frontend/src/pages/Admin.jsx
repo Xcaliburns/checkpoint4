@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import CallApi from "../services/CallApi";
 import Navbar from "../components/Navbar";
-
+import { toast } from "react-toastify";
 function Admin() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState([]);
@@ -12,16 +12,23 @@ function Admin() {
   const [productId, setProductId] = useState("");
   const [deleteId,setDeleteId]=useState("");  
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setProductId(product.id);
+   
+    setProductId(productId);
+     toast.success("Produit ajouté avec succès !");
     if (description && price && photo && title) {
       CallApi.post("api/product", {
         description,
-        price: parseFloat(price[0]),
+        price: parseFloat(price[0]).toFixed(2),
         photo,
         title,
       })
-        .then(() => {})
+          .then(() => {
+            setDescription("");
+            setPhoto("");
+            setTitle("");
+            setProductId("");
+        toast.success("Produit ajouté avec succès !");
+      })
         .catch((err) => console.log(err.response.data));
     } else {
       alert("Please specify a description, a price and a password");
@@ -42,7 +49,10 @@ function Admin() {
         photo,
         title,
       })
-        .then(() => {})
+        .then(() => {
+        // Affiche le toast de réussite
+        toast.success("Produit mis à jour avec succès !");
+      })
         .catch((err) => console.log(err.response.data));
     else {
       alert("Please specify a description, a price  a password and a title");
@@ -51,7 +61,11 @@ function Admin() {
 
   const handleDelete=(e)=>{e.preventDefault();
   if (deleteId)
-      CallApi.delete(`/api/product/${deleteId}`)
+        CallApi.delete(`/api/product/${deleteId}`)
+         .then(() => {
+        // Affiche le toast de réussite
+        toast.success("Produit supprimé avec succès !");
+      }) 
     .catch((err) => console.log(err.response.data));
     else {
       alert("Please specify a description, a price  a password and a title");
@@ -63,20 +77,20 @@ function Admin() {
   };
 
   const handleDeleteId = (e) => {
-    setDeleteId(e.target.value);
+       setDeleteId(e.target.value);
   };
   console.log(price);
   console.log(productId);
   return (
-    <div className="flex flex-col items-center bg-gray-500 h-full">
+    <div className="flex flex-col items-center text-xl bg-gray-500 min-h-full">
       {" "}
       <Navbar />
-      <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
+      <div className="w-full px-6 py-4 mt-10 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
         <form className="bg-gray-800 " onSubmit={handleSubmit}>
-          <div className="bg">
+          <div className="mt-10 min-h-full">
             <label
               htmlFor="text"
-              className="block text-sm font-medium text-gray-400 undefined"
+              className="block text-sm font-medium text-gray-400 "
             >
               description
             </label>
@@ -146,14 +160,14 @@ function Admin() {
           </div>
           <button
             type="button"
-            className=" block w-2/3 rounded-md"
+            className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false hover:bg-green-500"
             onClick={handleSubmit}
           >
             Creer
           </button>
         </form>
       </div>
-      <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
+      <div className="px-6 py-4 mt-10 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg w-full min-h-800">
         <form className="bg-gray-800 " onSubmit={handleUpdate}>
           <div className="bg">
             <label
@@ -252,7 +266,7 @@ function Admin() {
           <button
             type="submit"
             onClick={handleUpdate}
-            className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+            className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false hover:bg-green-500"
           >
             Update
           </button>
@@ -286,7 +300,7 @@ function Admin() {
           <button
             type="submit"
             onClick={handleDelete}
-            className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+            className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false hover:bg-red-500"
           >
             Effacer
           </button>
