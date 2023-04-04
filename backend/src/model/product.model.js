@@ -37,7 +37,7 @@ const addOne = async (product) => {
 const updateOne = async function (product) {
     try {
       const result = await db.query(
-         `UPDATE \`product\` SET description = ?, price = ?, photo = ?,title WHERE id = ?`,
+         `UPDATE \`product\` SET description = ?, price = ?, photo = ?,title=? WHERE id = ?`,
         [product.description, product.price, product.photo,product.title, product.id,]
       );
       return result;
