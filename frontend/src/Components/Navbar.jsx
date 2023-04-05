@@ -20,16 +20,16 @@ const logout=(e)=>{
 }
 
   return (
-    <nav className="w-full  bg-dark shadow h-24 min-h-full ">
-      <div className="justify-between  px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+    <nav className="w-full min-h-200 flex flex-col bg-dark shadow h-24 min-h-full ">
+      <div className="justify-between flex flex-col px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <h2 className="text-2xl font-bold text-white">indie World</h2>
           </div>
         </div>
         <div>
-          <nav className=" flex flex-col align-center  space-y-8 md:flex md:space-x-6 md:space-y-0 text-xl text-gray-100">
-            <div className="flex flex-row ">
+          <nav className=" flex flex-row align-center  space-y-8 md:flex md:space-x-6 md:space-y-0 text-xl text-gray-100">
+            
               
               <div className=" pl-2 hover:border-2 hover:rounded-md hover:text-green-300  hover:shadow-green-500/300 hover:border-green-500">
                 <NavLink to="/">Accueil</NavLink>
@@ -40,7 +40,7 @@ const logout=(e)=>{
               <div className=" pl-2 hover:border-2 hover:rounded-md hover:text-green-300  hover:shadow-green-500/300 hover:border-green-500 ">
                 <NavLink to="/signup">Inscription</NavLink>
               </div>
-            </div>
+            
             <div className="flex flex-row">
               <div className="pl-2  hover:border-2 hover:rounded-md hover:text-green-300  hover:shadow-green-500/300 hover:border-green-500 ">
                 <NavLink to="/panier">Panier</NavLink>
