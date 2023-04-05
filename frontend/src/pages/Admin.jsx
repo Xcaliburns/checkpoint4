@@ -82,10 +82,11 @@ function Admin() {
   console.log(price);
   console.log(productId);
   return (
-    <div className="flex flex-col items-center text-xl bg-gray-500 min-h-full">
-      {" "}
+    <div className="flex flex-col  items-center text-xl bg-gray-500 min-h-full">
+     
       <Navbar />
-      <div className="w-full px-6 py-4 mt-10 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
+      <div className="flex flex-col lg:flex-row">
+      <div className="w-full px-6 py-4 m-5 mt-10 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
         <form className="bg-gray-800 " onSubmit={handleSubmit}>
           <div className="mt-10 min-h-full">
             <label
@@ -167,7 +168,7 @@ function Admin() {
           </button>
         </form>
       </div>
-      <div className="px-6 py-4 mt-10 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg w-full min-h-800">
+      <div className="px-6 py-4 mt-10 m-5 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg w-full min-h-800">
         <form className="bg-gray-800 " onSubmit={handleUpdate}>
           <div className="bg">
             <label
@@ -249,7 +250,7 @@ function Admin() {
             <select
               value={productId}
               onChange={handleProductChange}
-              className="pl-2 text-black h-10 rounded-lg bg-gray-200 shadow-lg shadow-blue-500/50 "
+              className="pl-2 text-black h-10 rounded-lg bg-gray-200 shadow-lg shadow-blue-500/50 w-2/3 "
             >
               {productData.map((product) => (
                 <option
@@ -272,7 +273,7 @@ function Admin() {
           </button>
         </form>
       </div>
-      <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
+      <div className="w-full px-6 py-4 lg:min-w-500 m-5 mt-10 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
         <form className="bg-gray-800 " onSubmit={handleUpdate}>
           <div className="mt-4">
             <label
@@ -284,7 +285,7 @@ function Admin() {
             <select
               value={deleteId}
               onChange={handleDeleteId}
-              className="pl-2 text-black h-10 rounded-lg bg-gray-200 shadow-lg shadow-blue-500/50 "
+              className="pl-2 text-black h-10 rounded-lg bg-gray-200 shadow-lg shadow-blue-500/50 w-2/3"
             >
               {productData.map((product) => (
                 <option
@@ -300,11 +301,12 @@ function Admin() {
           <button
             type="submit"
             onClick={handleDelete}
-            className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false hover:bg-red-500"
+            className="inline-flex items-center px-4 py-2 m-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false hover:bg-red-500"
           >
             Effacer
           </button>
         </form>
+      </div>
       </div>
     </div>
   );
