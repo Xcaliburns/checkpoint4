@@ -35,6 +35,7 @@ function home() {
               className=""
               key={product.id}
               photo={product.photo}
+              description={product.description}
               price={product.price}
               title={product.title}
             />

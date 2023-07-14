@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `indie_world` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `indie_world`;
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
--- Host: localhost    Database: finaldb
+-- Host: localhost    Database: indie_world
 -- ------------------------------------------------------
--- Server version	8.0.31
+-- Server version	8.0.33
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,57 +18,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cart`
+-- Table structure for table `comment`
 --
 
-DROP TABLE IF EXISTS `cart`;
+DROP TABLE IF EXISTS `comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cart` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `comment` (
+  `id` int NOT NULL,
+  `text` mediumtext NOT NULL,
   `user_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `cart_FK` (`user_id`),
-  CONSTRAINT `cart_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cart`
---
-
-LOCK TABLES `cart` WRITE;
-/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cart_product`
---
-
-DROP TABLE IF EXISTS `cart_product`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cart_product` (
-  `cart_id` int NOT NULL,
   `product_id` int NOT NULL,
-  `id` int NOT NULL AUTO_INCREMENT,
-  `quantity` int DEFAULT '1',
-  PRIMARY KEY (`id`),
-  KEY `fk_cart_has_product_product1_idx` (`product_id`),
-  KEY `fk_cart_has_product_cart1_idx` (`cart_id`),
-  CONSTRAINT `fk_cart_has_product_cart1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
-  CONSTRAINT `fk_cart_has_product_product1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+  PRIMARY KEY (`id`,`user_id`,`product_id`),
+  KEY `fk_comment_user2_idx` (`user_id`),
+  KEY `fk_comment_product1_idx` (`product_id`),
+  CONSTRAINT `fk_comment_product1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  CONSTRAINT `fk_comment_user2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cart_product`
+-- Dumping data for table `comment`
 --
 
-LOCK TABLES `cart_product` WRITE;
-/*!40000 ALTER TABLE `cart_product` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cart_product` ENABLE KEYS */;
+LOCK TABLES `comment` WRITE;
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,12 +55,13 @@ DROP TABLE IF EXISTS `product`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `description` longtext NOT NULL,
-  `price` double NOT NULL,
-  `photo` varchar(255) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `description` mediumtext NOT NULL,
+  `price` float NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `photo` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idgame_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,11 +82,11 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user_un` (`email`)
+  UNIQUE KEY `iduser_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -130,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-03  8:58:23
+-- Dump completed on 2023-07-14  8:25:14
